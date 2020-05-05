@@ -13,6 +13,46 @@
   }
 }
 
+.flex{
+  margin-top: 20vh;
+  display: flex;
+}
+
+.right{
+  flex: 1;
+  
+  
+}
+
+.selected{
+  background-color: yellow;
+  color: black;
+}
+
+.right-tile{
+  background-color: #282c34;
+  color: white;
+}
+.left-tile{
+  background-color: #61dafb;
+  color: black;
+}
+
+.left{
+  flex:1;
+  
+}
+
+.tile{
+max-width: fit-content;
+margin: auto;
+border: 2px solid black;
+min-width:30px;
+font-size:24px;
+margin-top: 1vh;
+border-radius: 10px;
+
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
