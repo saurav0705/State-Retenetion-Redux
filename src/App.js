@@ -3,7 +3,7 @@ import './App.css';
 import { connect} from 'react-redux'
 
 function App(props) {
-  const [message,setMessage] = useState('some');
+  const [message,setMessage] = useState('');
   useEffect(()=>{
     setTimeout(()=>setMessage(''),2000);
   },[message])
