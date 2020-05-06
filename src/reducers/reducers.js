@@ -9,8 +9,19 @@ export const reducer = (state = defaultState(), action) => {
          {
             let obj = state;
             obj[action.payload]= !obj[action.payload]
-            localStorage.setItem('selected',JSON.stringify(obj));
              return [...obj];
+         }
+         case 'SUBMIT':{
+            //  console.log('submit');
+            let obj = state;
+             localStorage.setItem('selected',JSON.stringify(obj))
+             return [...obj]
+         }
+         case 'RESET':{
+            //  console.log('reset');
+             let obj = Array(21).fill(false);
+             localStorage.setItem('selected',JSON.stringify(obj));
+             return [...obj]
          }
        default:
          return state;
