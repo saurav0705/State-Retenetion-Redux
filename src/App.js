@@ -1,6 +1,8 @@
 import React, { useState,useEffect } from 'react';
 import './App.css';
 import { connect} from 'react-redux'
+import ListComponent from './components/ListComponent';
+import ButtonContainer from './components/ButtonContainer';
 
 function App(props) {
   const [message,setMessage] = useState('');
@@ -12,31 +14,27 @@ function App(props) {
     <div className="App">
       <div className="flex">
       <div className="message">{message}</div>
-        <div className="heading">EVEN</div>
-        <div className="left">
+      <ListComponent
+        heading="even"
+        cards={cards}
+        display={(val) => val*2}
+        select={(val) => props.select(val)}
+        data={props.data}
 
-        {cards.map(card => {
-          return(
-          <div className={props.data[card*2] ?"tile selected":"tile left-tile"} onClick={()=>props.select(card*2)} key={card*2}>{card*2}</div>
-          )
-        })}
-        </div>
-        <div className="heading">ODD</div>
-        <div className="right ">
-        {cards.map(card => {
-          return(
-          <div className={props.data[(card*2)+1] ? "tile selected":"tile right-tile"} onClick={()=>props.select((card*2) + 1)} key={(card*2) + 1}>{(card*2) + 1}</div>
-          )
-        })}
-        </div>
-        <div className="button-container">
-        <div className="button reset" onClick={() => {props.reset();setMessage('reset was successfull')}}>
-            RESET
-          </div>
-          <div className="button submit" onClick={() => {props.submit();setMessage('submit was successfull')}}>
-            Submit
-          </div>
-        </div>
+      />
+      <ListComponent
+        heading="odd"
+        cards={cards}
+        display={(val) => 2*val +1}
+        select={(val) => props.select(val)}
+        data={props.data}
+
+      />
+        <ButtonContainer
+        submit={()=> props.submit()}
+        reset={()=>props.reset()}
+        setMessage={(msg)=>setMessage(msg)}
+        />
       </div>
 
       
