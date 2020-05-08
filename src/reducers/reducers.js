@@ -1,6 +1,6 @@
 const defaultState = () => {
     if(localStorage.getItem('selected')) return JSON.parse(localStorage.getItem('selected'));
-    return [...Array(21).fill(false)];
+    return {};
 } 
 
 export const reducer = (state = defaultState(), action) => {
@@ -8,20 +8,27 @@ export const reducer = (state = defaultState(), action) => {
        case 'SELECT':
          {
             let obj = state;
-            obj[action.payload]= !obj[action.payload]
-             return [...obj];
+            let key = Object.keys(action.payload)[0];
+            if(obj[key] === undefined){
+                obj={...obj,...{[key] : [action.payload[key]]}}
+            }else{
+                if(!obj[key].includes(action.payload[key])){
+                obj[key] = [...obj[key],action.payload[key]]}else{
+                    obj[key] = obj[key].filter(num => num !==action.payload[key])
+                }
+            }
+             return {...obj};
          }
          case 'SUBMIT':{
-            //  console.log('submit');
             let obj = state;
              localStorage.setItem('selected',JSON.stringify(obj))
-             return [...obj]
+             return state
          }
          case 'RESET':{
             //  console.log('reset');
-             let obj = Array(21).fill(false);
+             let obj = {};
              localStorage.setItem('selected',JSON.stringify(obj));
-             return [...obj]
+             return {...obj}
          }
        default:
          return state;

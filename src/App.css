@@ -3,11 +3,23 @@
   /* margin-top: 20vh; */
   display: block;
 }
+*::-webkit-scrollbar {
+  display: none;
+}
 
+/* Hide scrollbar for IE and Edge */
+*{
+  -ms-overflow-style: none;
+}
 .right{
   flex: 1;
   display: flex;
   
+}
+
+.input-card{
+  max-width: fit-content;
+  margin: auto;
 }
 
 .selected{
@@ -25,8 +37,10 @@
 }
 
 .left{
-  flex:1;
-  display: flex;
+ display: grid;
+ grid-template-columns: repeat(auto-fit,200px);
+ justify-content: center;
+ grid-gap: 2em;
   
 }
 
@@ -40,7 +54,7 @@
 }
 
 .tile{
-max-width: fit-content;
+width: 200px;
 margin: auto;
 border: 2px solid black;
 min-width:30px;
@@ -49,6 +63,7 @@ margin-top: 1vh;
 border-radius: 10px;
 text-align: center;
 cursor: pointer;
+overflow-x: scroll;
 
 }
 
@@ -100,6 +115,36 @@ background-color: orange;
 
 .reset:hover{
   background-color: darkorange;
+}
+
+
+input , button {
+background-color: none;
+outline: none;
+padding: 8px;
+text-align: center;
+text-transform: uppercase; 
+font-weight: 600; 
+transition-duration: 200ms;
+}
+.middle{
+  text-align: center;
+  background-color: lightgrey;
+  max-width: fit-content;
+  margin: auto;
+  padding: 10px;
+  border-radius: 10px;
+}
+button{
+  background-color: #5cf59b;
+  border: 2px solid #5cf59b;
+  
+}
+
+button:hover{
+  background-color: #7ba75f;
+  border: 2px solid #7ba75f;
+  
 }
 
 
