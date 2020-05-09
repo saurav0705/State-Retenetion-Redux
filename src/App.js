@@ -11,6 +11,21 @@ function App(props) {
   useEffect(()=>{
     setTimeout(()=>setMessage(''),2000);
   },[message])
+
+  var component = {
+    "odd":{
+      heading:"odd",
+      display:(val)=>2*val +1
+    },
+    "even":{
+      heading:"even",
+      display:val => val*2
+    },
+    "fobonaci":{
+      heading:"fobonaci",
+      display:fibo
+    }
+  }
   function fibo(num){
     var a = 1, b = 0, temp;
     while (num >= 0){
@@ -35,30 +50,19 @@ function App(props) {
         <div>Enter No. of Cards</div>
         <input type="number" value={input} onChange={(event)=>setInput(event.target.value)}/><button onClick={() => setCards()}>ok</button>
       </div>
-      <ListComponent
-        heading="even"
+
+      {Object.keys(component).map(comp => {
+        return(
+          <ListComponent
+        heading={component[comp].heading}
         cards={item}
-        display={(val) => val*2}
+        display={component[comp].display}
         select={(val) => props.select(val)}
         data={props.data}
 
       />
-      <ListComponent
-        heading="odd"
-        cards={item}
-        display={(val) => 2*val +1}
-        select={(val) => props.select(val)}
-        data={props.data}
-
-      />
-      <ListComponent
-      heading="fibonaci"
-      cards={item}
-      display={(val) => fibo(val)}
-      select={(val) => props.select(val)}
-      data={props.data}
-
-      />
+        )
+      })}
         <ButtonContainer
         submit={()=> props.submit()}
         reset={()=>props.reset()}
