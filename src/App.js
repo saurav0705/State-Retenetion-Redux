@@ -11,21 +11,34 @@ function App(props) {
   useEffect(()=>{
     setTimeout(()=>setMessage(''),2000);
   },[message])
-
+  const fact = (num) => {
+    let result = 1;
+    while(num>=1){
+      result = result*num;
+      num--;
+    }
+    return result;
+  }
   var component = {
-    "odd":{
+    odd:{
       heading:"odd",
       display:(val)=>2*val +1
     },
-    "even":{
+    even:{
       heading:"even",
       display:val => val*2
     },
-    "fobonaci":{
+    fobonaci:{
       heading:"fobonaci",
       display:fibo
+    },
+    factorial:{
+      heading:"factorial",
+      display:fact
     }
   }
+
+  
   function fibo(num){
     var a = 1, b = 0, temp;
     while (num >= 0){
