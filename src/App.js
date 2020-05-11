@@ -1,16 +1,14 @@
 import React, { useState,useEffect } from 'react';
-import './App.css';
+import './App.scss';
 import { connect} from 'react-redux'
 import ListComponent from './components/ListComponent';
 import ButtonContainer from './components/ButtonContainer';
 
 function App(props) {
-  const [message,setMessage] = useState('');
+  
   const [item,setItem] = useState([]);
   const [input,setInput] = useState(0);
-  useEffect(()=>{
-    setTimeout(()=>setMessage(''),2000);
-  },[message])
+  
   const fact = (num) => {
     let result = 1;
     while(num>=1){
@@ -58,12 +56,15 @@ function App(props) {
   return (
     <div className="App">
       <div className="flex">
-      <div className="message">{message}</div>
       <div className="input-card">
         <div>Enter No. of Cards</div>
         <input type="number" value={input} onChange={(event)=>setInput(event.target.value)}/><button onClick={() => setCards()}>ok</button>
       </div>
-
+      <ButtonContainer
+        submit={()=> props.submit()}
+        reset={()=>props.reset()}
+        />
+      <div className="grid-container">
       {Object.keys(component).map(comp => {
         return(
           <ListComponent
@@ -74,13 +75,11 @@ function App(props) {
         data={props.data}
 
       />
+      
         )
       })}
-        <ButtonContainer
-        submit={()=> props.submit()}
-        reset={()=>props.reset()}
-        setMessage={(msg)=>setMessage(msg)}
-        />
+      </div>
+        
       </div>
 
       

@@ -11,14 +11,14 @@ const ListComponent = (props) => {
         return false;
     }
     return (
-        <div>
+        <div className="list-container">
             <div className="heading">{props.heading}</div>
             {props.cards.length === 0 ? <div className="heading middle">NO DATA</div>:null }
-        <div className="left">
+        <div className="right">
 
         {props.cards.map((card,index) => {
           return(
-          <div className={ selected(index) ?"tile selected":"tile left-tile"} onClick={()=>props.select({[props.heading]:index})} key={props.heading+index}>{props.display(index)}</div>
+          <div className={ selected(index) ?"tile selected":"tile right-tile"} onClick={()=>props.select({[props.heading]:index})} key={props.heading+index}>{props.display(index)}</div>
           )
         })}
         </div>

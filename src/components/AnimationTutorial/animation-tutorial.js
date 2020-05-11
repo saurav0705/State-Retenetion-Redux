@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import {TimelineLite,Power2} from 'gsap'
-import './animation-tutorial.css';
+import './animation-tutorial.scss';
 const Tutorial = () => {
     let timeline = new TimelineLite();
     let cards = Array(10).fill("something");
