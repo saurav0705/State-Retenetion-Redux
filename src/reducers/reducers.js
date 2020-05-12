@@ -1,9 +1,6 @@
-const defaultState = () => {
-    if(localStorage.getItem('selected')) return JSON.parse(localStorage.getItem('selected'));
-    return {};
-} 
 
-export const reducer = (state = defaultState(), action) => {
+
+export const reducer = (state = {}, action) => {
     switch(action.type) {
        case 'SELECT':
          {
@@ -25,9 +22,12 @@ export const reducer = (state = defaultState(), action) => {
              return state
          }
          case 'RESET':{
-            //  console.log('reset');
-             let obj = {};
+             let obj = {odd:[],even:[],fibbonaci:[],factorial:[]};
              localStorage.setItem('selected',JSON.stringify(obj));
+             return {...obj}
+         }
+         case 'ADD':{
+             let obj = action.payload;
              return {...obj}
          }
        default:

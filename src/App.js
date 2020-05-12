@@ -3,11 +3,21 @@ import './App.scss';
 import { connect} from 'react-redux'
 import ListComponent from './components/ListComponent';
 import ButtonContainer from './components/ButtonContainer';
+import axios from 'axios';
+import Loading from './components/Loading';
 
 function App(props) {
   
   const [item,setItem] = useState([]);
-  const [input,setInput] = useState(0);
+  const [input,setInput] = useState(10);
+
+  useEffect(()=>{
+    setTimeout(()=> {
+    axios.get('https://chatroom98.herokuapp.com/mock-json/')
+      .then(resp => {props.add(resp.data)})},2000)
+    setCards(input);
+
+  },[])
   
   const fact = (num) => {
     let result = 1;
@@ -27,7 +37,7 @@ function App(props) {
       display:val => val*2
     },
     fobonaci:{
-      heading:"fobonaci",
+      heading:"fibbonaci",
       display:fibo
     },
     factorial:{
@@ -55,6 +65,7 @@ function App(props) {
   }
   return (
     <div className="App">
+      {props.data.odd === undefined ? <Loading/>:
       <div className="flex">
       <div className="input-card">
         <div>Enter No. of Cards</div>
@@ -67,20 +78,23 @@ function App(props) {
       <div className="grid-container">
       {Object.keys(component).map(comp => {
         return(
+          <div key={comp}>
           <ListComponent
         heading={component[comp].heading}
         cards={item}
         display={component[comp].display}
         select={(val) => props.select(val)}
         data={props.data}
+        
 
       />
+      </div>
       
         )
       })}
       </div>
         
-      </div>
+      </div>}
 
       
     </div>
@@ -97,7 +111,8 @@ const mapDispatchToProps = (dispatch) => {
   return{
     select:(num) => dispatch({type:'SELECT',payload:num}),
     submit:() => dispatch({type:'SUBMIT'}),
-    reset:() => dispatch({type:'RESET'})
+    reset:() => dispatch({type:'RESET'}),
+    add:(data) => dispatch({type:'ADD',payload:data})
   }
 }
 
