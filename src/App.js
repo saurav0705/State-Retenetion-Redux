@@ -3,7 +3,7 @@ import './App.scss';
 import { connect} from 'react-redux'
 import ListComponent from './components/ListComponent';
 import ButtonContainer from './components/ButtonContainer';
-import axios from 'axios';
+import {getData} from './service';
 import Loading from './components/Loading';
 
 function App(props) {
@@ -12,12 +12,10 @@ function App(props) {
   const [input,setInput] = useState(10);
 
   useEffect(()=>{
-    setTimeout(()=> {
-    axios.get('https://chatroom98.herokuapp.com/mock-json/')
-      .then(resp => {props.add(resp.data)})},2000)
+    getData((data)=> props.add(data));
     setCards(input);
 
-  },[])
+  },[ ])
   
   const fact = (num) => {
     let result = 1;
