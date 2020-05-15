@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import {reducer} from './reducers/reducers';
-import DriveUploadTutorial from './components/DriveUploadTutorial/DriveUploadTutorial';
+// import DriveUploadTutorial from './components/DriveUploadTutorial/DriveUploadTutorial';
 // import Tutorial from './components/AnimationTutorial/animation-tutorial';
 const store = createStore(reducer)
 
