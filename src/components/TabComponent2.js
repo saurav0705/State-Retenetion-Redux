@@ -4,17 +4,16 @@ import Loading from './Loading';
 import ListComponent from './ListComponent';
 import ButtonContainer from './ButtonContainer';
 import {getData} from '../service';
-// import Loading from './components/Loading';
 
 const TabComponent2 = (props) => {
     const [item,setItem] = useState([]);
   const [input,setInput] = useState(10);
 
   useEffect(()=>{
-      if(props.data.odd === undefined){getData((data)=> props.add(data));}
+      // if(props.data.odd === undefined){getData((data)=> props.add(data));}
     setCards(input);
 
-  },[ ])
+  },[])
   
   const fact = (num) => {
     let result = 1;
@@ -57,7 +56,9 @@ const TabComponent2 = (props) => {
   }
   
   const setCards = () => {
-    let cards = Array(parseInt(input)).fill("something");  
+    let cards = Array(parseInt(input)).fill("something"); 
+    props.add({});
+    getData((data)=> props.add(data));
     setItem(() => cards)
   }
     return (
